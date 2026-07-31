@@ -2,6 +2,7 @@ import csv
 import io
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 import random
 import sqlite3
 from datetime import date, datetime
@@ -14,6 +15,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 load_dotenv()
+client = OpenAI()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -258,7 +260,85 @@ def generate_unique_ideas(topic, number):
         attempts += 1
 
     return ideas
+def generate_ai_ideas(
+    niche,
+    platform,
+    topic,
+    audience,
+    goal,
+    tone,
+    number
+):
+    prompt = f"""
+You are an elite marketing strategist and viral content expert.
 
+Create {number} HIGH-QUALITY content ideas.
+
+Business niche:
+{niche}
+
+Platform:
+{platform}
+
+Topic:
+{topic}
+
+Target audience:
+{audience}
+
+Goal:
+{goal}
+
+Tone:
+{tone}
+
+The ideas must be:
+- Original
+- Highly engaging
+- Designed to go viral
+- Suitable for the chosen platform
+- Written by an expert marketer
+- Not generic
+- Different from each other
+
+Return ONLY in this exact format:
+
+CONTENT TITLE ||| CONTENT FORMAT
+
+Example:
+
+How I gained my first 10,000 followers ||| TikTok Storytelling Video
+
+Do not number the ideas.
+Do not add explanations.
+Return exactly {number} lines.
+"""
+
+    response = client.responses.create(
+        model="gpt-5-mini",
+        input=prompt
+    )
+
+    ideas = []
+
+    for line in response.output_text.splitlines():
+        line = line.strip()
+
+        if "|||" not in line:
+            continue
+
+        title, content_format = line.split("|||", 1)
+
+        title = title.strip()
+        content_format = content_format.strip()
+
+        if title and content_format:
+            ideas.append((title, content_format))
+
+    if len(ideas) < number:
+        raise ValueError("The AI did not return enough correctly formatted ideas.")
+
+    return ideas[:number]
 
 @app.context_processor
 def inject_user():
@@ -409,7 +489,24 @@ def generate():
             )
             return redirect(url_for("pricing"))
 
-        pairs = generate_unique_ideas(topic, number)
+        try:
+            pairs = generate_ai_ideas(
+                niche=niche,
+                platform=platform,
+                topic=topic,
+                audience=audience,
+                goal=goal,
+                tone=tone,
+                number=number
+            )
+        except Exception as error:
+            print(f"AI generation failed: {error}")
+            pairs = generate_unique_ideas(topic, number)
+            flash(
+                "AI generation was temporarily unavailable, so backup ideas were generated.",
+                "warning"
+            )
+
         db = get_db()
 
         for hook, content_format in pairs:
