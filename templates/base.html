@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}IdeaForge{% endblock %}</title>
+ <title>{% block title %}Elite Legacy Marketing{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <nav class="nav">
-    <a class="brand" href="{{ url_for('home') }}">IdeaForge</a>
+<a class="brand" href="{{ url_for('home') }}">Elite Legacy Marketing</a>
     <div class="nav-links">
         {% if current_user %}
             <a href="{{ url_for('dashboard') }}">Dashboard</a>

@@ -1,42 +1,79 @@
 {% extends "base.html" %}
-{% block title %}IdeaForge — Content ideas in seconds{% endblock %}
+
+{% block title %}Elite Legacy Marketing{% endblock %}
+
 {% block content %}
+
 <section class="hero">
-    <div>
-        <span class="badge">Creator tool</span>
-        <h1>Never run out of content ideas again.</h1>
-        <p class="lead">
-            Generate platform-specific content hooks, formats, calls to action,
-            and campaign ideas for any niche.
-        </p>
-        <div class="actions">
-            <a class="button" href="{{ url_for('register') }}">Start generating free</a>
-            <a class="button ghost" href="{{ url_for('pricing') }}">View pricing</a>
-        </div>
+
+<h1>AI Marketing Platform</h1>
+
+<p>
+Create better content, build marketing campaigns,
+and grow your business using AI.
+</p>
+
+<div class="hero-buttons">
+<a href="{{ url_for('register') }}" class="button">
+Start Free
+</a>
+
+<a href="{{ url_for('pricing') }}" class="button ghost">
+View Pricing
+</a>
+</div>
+<div class="stats">
+
+    <div class="stat">
+        <strong>500+</strong>
+        <span>Businesses</span>
     </div>
-    <div class="hero-card">
-        <p class="eyebrow">Example idea</p>
-        <h3>Three mistakes people make when promoting student events</h3>
-        <p><strong>Format:</strong> Fast-paced TikTok list</p>
-        <p><strong>CTA:</strong> Tag the person you are coming with.</p>
+
+    <div class="stat">
+        <strong>25,000+</strong>
+        <span>Ideas Generated</span>
     </div>
+
+    <div class="stat">
+        <strong>95%</strong>
+        <span>Time Saved</span>
+    </div>
+
+</div>
 </section>
 
-<section class="section">
-    <h2>Everything needed for a strong MVP</h2>
-    <div class="grid three">
-        <article class="card">
-            <h3>Fast generation</h3>
-            <p>Create focused ideas for TikTok, Instagram, YouTube, LinkedIn and X.</p>
-        </article>
-        <article class="card">
-            <h3>Saved library</h3>
-            <p>Every generated idea is stored in the customer's private account.</p>
-        </article>
-        <article class="card">
-            <h3>Export tools</h3>
-            <p>Customers can export their ideas as text or CSV files.</p>
-        </article>
-    </div>
+<section class="features">
+
+<div class="card">
+<h2>💡 AI Content Ideas</h2>
+<p>Create unlimited content ideas in seconds.</p>
+</div>
+
+<div class="card">
+<h2>🎥 Video Scripts</h2>
+<p>Generate TikTok, Instagram and YouTube scripts instantly.</p>
+</div>
+
+<div class="card">
+<h2>🪝 Viral Hooks</h2>
+<p>Stop the scroll with powerful opening lines.</p>
+</div>
+
+<div class="card">
+<h2>📅 Content Calendar</h2>
+<p>Create a full 30-day posting strategy.</p>
+</div>
+
+<div class="card">
+<h2>📈 Marketing Strategy</h2>
+<p>Generate campaigns for your business in minutes.</p>
+</div>
+
+<div class="card">
+<h2>🤝 Agency Tools</h2>
+<p>Manage multiple clients from one dashboard.</p>
+</div>
+
 </section>
+
 {% endblock %}
