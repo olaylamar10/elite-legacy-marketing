@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}IdeaForge — Content ideas in seconds{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="badge">Creator tool</span>
+        <h1>Never run out of content ideas again.</h1>
+        <p class="lead">
+            Generate platform-specific content hooks, formats, calls to action,
+            and campaign ideas for any niche.
+        </p>
+        <div class="actions">
+            <a class="button" href="{{ url_for('register') }}">Start generating free</a>
+            <a class="button ghost" href="{{ url_for('pricing') }}">View pricing</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <p class="eyebrow">Example idea</p>
+        <h3>Three mistakes people make when promoting student events</h3>
+        <p><strong>Format:</strong> Fast-paced TikTok list</p>
+        <p><strong>CTA:</strong> Tag the person you are coming with.</p>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Everything needed for a strong MVP</h2>
+    <div class="grid three">
+        <article class="card">
+            <h3>Fast generation</h3>
+            <p>Create focused ideas for TikTok, Instagram, YouTube, LinkedIn and X.</p>
+        </article>
+        <article class="card">
+            <h3>Saved library</h3>
+            <p>Every generated idea is stored in the customer's private account.</p>
+        </article>
+        <article class="card">
+            <h3>Export tools</h3>
+            <p>Customers can export their ideas as text or CSV files.</p>
+        </article>
+    </div>
+</section>
+{% endblock %}
